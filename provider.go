@@ -25,7 +25,6 @@ func Default() Provider {
 
 	pl.s = sessions{
 		status: &pl.status,
-		//sessions: make(map[string]*sessionState),
 	}
 
 	pl.subs = subscriptions{
