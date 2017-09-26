@@ -8,6 +8,8 @@ const (
 	ErrInvalidArgs Errors = iota
 	// ErrUnknownProvider if provider is unknown
 	ErrUnknownProvider
+	// ErrInvalidConfig provided config is invalid
+	ErrInvalidConfig
 	// ErrAlreadyExists object already exists
 	ErrAlreadyExists
 	// ErrNotInitialized persistence provider not initialized yet
@@ -16,7 +18,6 @@ const (
 	ErrNotFound
 	// ErrNotOpen storage is not open
 	ErrNotOpen
-
 	// ErrBrokenEntry persisted entry does not meet requirements
 	ErrBrokenEntry
 )
@@ -24,6 +25,7 @@ const (
 var errorsDesc = map[Errors]string{
 	ErrInvalidArgs:     "persistence: invalid arguments",
 	ErrUnknownProvider: "persistence: unknown provider",
+	ErrInvalidConfig:   "persistence: invalid config",
 	ErrAlreadyExists:   "persistence: already exists",
 	ErrNotInitialized:  "persistence: not initialized",
 	ErrNotFound:        "persistence: not found",
@@ -123,6 +125,3 @@ type Provider interface {
 	System() (System, error)
 	Shutdown() error
 }
-
-// ProviderConfig interface implemented by every backend
-type ProviderConfig interface{}
