@@ -1,5 +1,6 @@
 package persistence
 
+import ("github.com/VolantMQ/volantmq/packet")
 // Errors persistence errors
 type Errors int
 
@@ -46,6 +47,7 @@ func (e Errors) Error() string {
 type PersistedPacket struct {
 	UnAck    bool
 	ExpireAt string
+	Version  packet.ProtocolVersion
 	Data     []byte
 }
 
@@ -64,6 +66,7 @@ type SessionState struct {
 	Errors        []error
 	Expire        *SessionDelays
 	Version       byte
+	LastCompletedSubscribedMessageUniqueIds *map[string]int64
 }
 
 // SystemState system configuration
@@ -88,6 +91,7 @@ type Subscriptions interface {
 type State interface {
 	StateStore([]byte, *SessionState) error
 	StateDelete([]byte) error
+	StateGet([]byte) (*SessionState, error)
 }
 
 // Retained provider for load/store retained messages

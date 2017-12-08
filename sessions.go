@@ -132,6 +132,14 @@ func (s *sessions) StateDelete(id []byte) error {
 	return nil
 }
 
+func (s *sessions) StateGet(id []byte)(*SessionState, error){
+	if elem, ok := s.entries.Load(string(id)); ok {
+		return elem.(*session).state, nil
+	}
+
+	return nil, nil
+}
+
 // Delete
 func (s *sessions) Delete(id []byte) error {
 	s.entries.Delete(string(id))
