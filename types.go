@@ -1,8 +1,10 @@
 package persistence
 
-import ("github.com/VolantMQ/volantmq/packet")
 // Errors persistence errors
 type Errors int
+
+// ProtocolVersion describes versions implemented by this package
+type ProtocolVersion byte
 
 const (
 	// ErrInvalidArgs invalid arguments provided
@@ -47,7 +49,7 @@ func (e Errors) Error() string {
 type PersistedPacket struct {
 	UnAck    bool
 	ExpireAt string
-	Version  packet.ProtocolVersion
+	Version  ProtocolVersion
 	Data     []byte
 }
 
