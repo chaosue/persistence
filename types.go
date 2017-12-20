@@ -49,6 +49,7 @@ func (e Errors) Error() string {
 type PersistedPacket struct {
 	UnAck    bool
 	ExpireAt string
+	CreatedAt int64
 	Version  ProtocolVersion
 	Data     []byte
 }
