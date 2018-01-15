@@ -69,7 +69,6 @@ type SessionState struct {
 	Errors        []error
 	Expire        *SessionDelays
 	Version       byte
-	LastCompletedSubscribedMessageUniqueIds *map[string]int64
 }
 
 // SystemState system configuration
